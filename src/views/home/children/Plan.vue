@@ -2,9 +2,9 @@
   <div class="plan">
     <div class="body">
       <!-- <no-data class='no-data' wx:if="{{dataList.length == 0}}" /> -->
-      <div wx:else>
+      <div>
         <div>
-          <div class="job">
+          <div class="job" @click="toDetails">
             <div class="job-state">
               <div class="job-name">人事行政主管</div>
               <div class="state-step">3-4.5千/月</div>
@@ -14,13 +14,7 @@
                 预约时间：
                 <span class="job-color">2020-06-18</span>
               </div>
-              <van-button
-                catchtap="toCopy"
-                color="#FF8853"
-                size="small"
-                style="height: .42rem; padding: 0 .3rem;"
-                round
-              >录入名单</van-button>
+              <van-button color="#FF8853" size="small" style="height: .42rem; padding: 0 .3rem;" round @click.stop="toCopyName">录入名单</van-button>
             </div>
             <div class="interdiv-count">
               广州市天河区
@@ -33,6 +27,20 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'Plan',
+  methods: {
+    toDetails () { // 去计划详情
+      this.$router.push("/plan/details")
+    },
+    toCopyName () { // 去录入名单
+      this.$router.push("/copy/name")
+    }
+  }
+}
+</script>
 
 
 <style lang="scss" scoped>

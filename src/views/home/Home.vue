@@ -7,8 +7,8 @@
     </div>
     <van-grid :border="false" column-num="3">
       <van-grid-item icon="https://api.jobyes.com/images/nav-issu.png" text="发布计划" @click="toPlay"/>
-      <van-grid-item icon="https://api.jobyes.com/images/nav-create.png" text="创建职位" />
-      <van-grid-item icon="https://api.jobyes.com/images/nav-result.png" text="人才库" />
+      <van-grid-item icon="https://api.jobyes.com/images/nav-create.png" text="创建职位" @click="toCreate" />
+      <van-grid-item icon="https://api.jobyes.com/images/nav-result.png" text="人才库" @click="toTalents" />
     </van-grid>
     <div class="tabs">
       <van-tabs
@@ -45,8 +45,17 @@ export default {
     };
   },
   methods: {
+    // 去发布计划
     toPlay () {
       this.$router.push("/plan")
+    },
+    // 创建职位
+    toCreate () {
+      this.$router.push({path: "/create", query: {title: '创建职位'}})
+    },
+    // 去人才库
+    toTalents () {
+      this.$router.push("/talents")
     }
   }
 };

@@ -16,7 +16,7 @@ export default new Router({
       meta: {navShow: true}
     },
     {
-      path: '/manage', // 信息
+      path: '/manage', // 职位管理
       component: () => import('../views/manage/Manage'),
       meta: {navShow: true}
     },
@@ -26,20 +26,68 @@ export default new Router({
       meta: {navShow: true}
     },
     {
-      path: '/login',  // 首页
+      path: '/login',  // 登录
       component: () => import('../views/login/Login'), 
     },
     {
-      path: '/plan',  // 发布计划
-      component: () => import('../views/plan/Plan'), 
-    },
-    {
-      path: '/mine/info',  // 个人信息
-      component: () => import('../views/mine/Info'), 
+      path: '/company/auth',  // 公司认证
+      component: () => import('../views/login/next/CompanyInfo'), 
     },
     {
       path: '/execute/details',  // 面试执行
       component: () => import('../views/home/details/ExecuteDetails'), 
+    },
+    {
+      path: '/plan/details',  // 面试计划
+      component: () => import('../views/home/details/PlanDetails'), 
+    },
+    {
+      path: '/copy/name',  // 录入名单
+      component: () => import('../views/home/children/CopyName'), 
+    },
+    {
+      path: '/plan',  // 发布计划
+      component: () => import('../views/home/nav/Plan'), 
+    },
+    {
+      path: '/talents',  // 人才库
+      component: () => import('../views/home/nav/Talents'), 
+    },
+    {
+      path: '/create',  // 创建职位
+      component: () => import('../views/home/nav/Create'), 
+    },
+    {
+      path: '/job/details',  // 职位详情
+      component: () => import('../views/manage/details/JobDetails'), 
+    },
+    {
+      path: '/mine/info',  // 个人信息
+      component: () => import('../views/mine/edit/Info'), 
+    },
+    {
+      path: '/company/info',  // 公司信息
+      component: () => import('../views/mine/edit/CompanyInfo'), 
+    },
+    {
+      path: '/company/face',  // 企业风采
+      component: () => import('../views/mine/edit/Face'), 
+    },
+    {
+      path: '/company/weal',  // 福利标签
+      component: () => import('../views/mine/edit/Weal'), 
+    },
+    {
+      path: '/company/edit',  // 修改企业信息
+      component: () => import('../views/mine/edit/EditCompany'), 
+    },
+    {
+      path: '/mine/code',  // 二维码
+      component: () => import('../views/mine/edit/Code'), 
+    },
+    {
+      path: '/place/category',  // 职能分类
+      component: () => import('../components/common/Place.vue'), 
     }
   ]
 })

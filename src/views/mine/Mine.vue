@@ -17,15 +17,15 @@
       </div>
       <div class="list">
         <van-grid column-num="3" :border="false">
-          <van-grid-item icon="https://api.jobyes.com/images/info-company.png" text="企业信息" />
-          <van-grid-item icon="https://api.jobyes.com/images/mien-company.png" text="企业风采" />
-          <van-grid-item icon="https://api.jobyes.com/images/welfare-tabs.png" text="福利标签" />
+          <van-grid-item icon="https://api.jobyes.com/images/info-company.png" text="企业信息" @click="toCompanyInfo" />
+          <van-grid-item icon="https://api.jobyes.com/images/mien-company.png" text="企业风采" @click="toFace" />
+          <van-grid-item icon="https://api.jobyes.com/images/welfare-tabs.png" text="福利标签" @click="toWeal" />
         </van-grid>
       </div>
       <div class="mine-banner">
         <img src="https://api.jobyes.com/images/mine-banner.png" />
       </div>
-      <div class="mine-list">
+      <div class="mine-list" @click="toCode">
         <van-cell title="资质认证" is-link value-class="pass" />
         <van-cell is-link value-class="pass">
           <div class="my-code-img">
@@ -50,8 +50,24 @@ export default {
     }
   },
   methods: {
+    // 去个人信息页面
     toInfo () {
       this.$router.push("/mine/info")
+    },
+    // 去企业信息页面
+    toCompanyInfo () {
+      this.$router.push("/company/info")
+    },
+    // 去企业风采
+    toFace () {
+      this.$router.push("/company/face")
+    },
+    // 去公司福利
+    toWeal () {
+      this.$router.push("/company/weal")
+    },
+    toCode () {
+      this.$router.push("/mine/code")
     }
   }
 }

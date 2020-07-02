@@ -1,9 +1,8 @@
 <template>
   <div>
     <div class="body">
-      <!-- <no-data class="no-data" /> -->
       <div>
-        <div class="list-item" bindtap="goDetails">
+        <div class="list-item" @click="goDetails">
           <div class="job-info">
             <div class="job-item">
               <div class="job-name">前端开发</div>
@@ -24,6 +23,16 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  name: 'List',
+  methods: {
+    goDetails () {
+      this.$router.push("/job/details")
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .list-item {

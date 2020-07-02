@@ -23,7 +23,7 @@
             </div>
             <div class="info-bottom">
               <div class="time">
-                <img src="https://api.jobyes.com/images/time-interdiv.png" />
+                <img src="https://api.jobyes.com/images/time-interview.png" />
                 <span>6：00-19：00</span>
               </div>
             </div>
@@ -33,10 +33,66 @@
           </div>
         </div>
         <div class="to-find">
-          <van-button size="small" color="#FF8853"  round>入职</van-button>
-          <van-button size="small" style="margin-left:.2rem" custom-class="res-btn" round>待定</van-button>
-          <van-button size="small" style="margin-left:.2rem" custom-class="res-btn" round>通过</van-button>
-          <van-button size="small" style="margin-left:.2rem" custom-class="res-btn" round>不通过</van-button>
+          <van-button size="small" color="#FF8853"  round>分享评价</van-button>
+          <van-button size="small" style="margin-left:.1rem" custom-class="res-btn" round>入职</van-button>
+          <van-button size="small" style="margin-left:.1rem" custom-class="res-btn" round>待定</van-button>
+          <van-button size="small" style="margin-left:.1rem" custom-class="res-btn" round>通过</van-button>
+          <van-button size="small" style="margin-left:.1rem" custom-class="res-btn" round>不通过</van-button>
+        </div>
+        <div class="to-find" v-show="false">
+          <van-button
+            size="small"
+            color="#959595"
+            custom-style="height: 36rpx; background: #f2f2f2;"
+            round
+          >未签到</van-button>
+        </div>
+        <div class="to-find" v-show="false">
+          <van-button
+            size="small"
+            color="#FF8853"
+            custom-style="height: 36rpx;"
+            bind:click="readRes"
+            round
+          >查看评价</van-button>
+        </div>
+      </div>
+            <div class="wrap">
+        <div class="compete-info">
+          <div class="avatar">
+            <img src="https://api.jobyes.com/images/avatar.png" />
+          </div>
+          <div class="person-info">
+            <div class="info-top">
+              <div class="name">陈晓姐</div>
+              <div class="phone">
+                <img src="https://api.jobyes.com/images/candi-phone.png" />
+                <span>1369254123</span>
+              </div>
+            </div>
+            <div class="sex">
+              女
+              <span>|</span>18岁
+              <span>|</span>本科
+              <span>|</span>1-3年
+            </div>
+            <div class="info-bottom">
+              <div class="time">
+                <img src="https://api.jobyes.com/images/time-interview.png" />
+                <span>6：00-19：00</span>
+              </div>
+            </div>
+          </div>
+          <div class="check-details">
+            <img src="https://api.jobyes.com/images/check-details.png" />
+          </div>
+        </div>
+        <div class="to-find">
+          <van-button size="small" color="#FF8853"  round>分享评价</van-button>
+          <van-button size="small" style="margin-left:.1rem" custom-class="res-btn" round>入职</van-button>
+          <van-button size="small" style="margin-left:.1rem" custom-class="res-btn" round>待定</van-button>
+          <van-button size="small" style="margin-left:.1rem" custom-class="res-btn" round>通过</van-button>
+          <van-button size="small" style="margin-left:.1rem" custom-class="res-btn" round>不通过</van-button>
         </div>
         <div class="to-find" v-show="false">
           <van-button
@@ -58,7 +114,7 @@
       </div>
     </div>
 
-    <div class="footer" bindtap="backPrv">
+    <div class="footer" @click="back">
       <div>返回</div>
     </div>
 
@@ -68,7 +124,7 @@
         <div class="toast-title">评价</div>
         <div class="toast-main">
           <div class="toast-input">
-            <spanarea placeholder="请输入评价"></spanarea>
+            <textarea placeholder="请输入评价"></textarea>
           </div>
         </div>
         <div class="toast-button">
@@ -125,6 +181,11 @@ export default {
       remarks: "", // 评价
       state: "" // 状态
     };
+  },
+  methods: {
+    back () {
+      this.$router.push("/home")
+    }
   }
 };
 </script>
@@ -200,7 +261,9 @@ export default {
             img {
               display: block;
               width: .2rem;
+              height: .2rem;
               margin-right: .1rem;
+              margin-top: .05rem;
             }
             span {
               display: block;
@@ -223,7 +286,7 @@ export default {
     }
     .to-find {
       margin: 0.2rem 0;
-      padding: 0 0.3rem;
+      padding-right: .3rem;
       box-sizing: border-box;
       display: flex;
       justify-content: flex-end;
@@ -245,8 +308,8 @@ export default {
   overflow: hidden;
   div {
     width: 6.9rem;
-    line-height: .8rem;
-    margin: 0.1rem auto;
+    line-height: .7rem;
+    margin: 0.15rem auto;
     border: .02rem solid #c9c9c9;
     text-align: center;
     border-radius: 0.1rem;
@@ -254,146 +317,4 @@ export default {
     font-size: .38rem;
   }
 }
-
-
-// .to-find {
-//   span-align: right;
-
-// }
-// .person-info > .sex > span {
-//   margin: 0 0.1rem;
-// }
-
-
-
-// .footer > view {
-//   
-// }
-
-// .res-btn {
-//   color: #ff8853 !important;
-//   border-color: #ff8853 !important;
-//   height: 36rpx !important;
-// }
-
-
-
-// .toast-box {
-//   width: 100%;
-//   height: 100%;
-//   opacity: 1;
-//   position: fixed;
-//   top: 0px;
-//   left: 0px;
-// }
-
-// .toastbg {
-//   opacity: 0.2;
-//   background-color: black;
-//   position: absolute;
-//   width: 100%;
-//   min-height: 100vh;
-// }
-
-// .showToast {
-//   position: absolute;
-//   opacity: 1;
-//   width: 70%;
-//   margin-left: 15%;
-//   margin-top: 40%;
-// }
-
-// .toast-title {
-//   background-color: #ff8853;
-//   color: white;
-//   padding-top: 2vh;
-//   padding-bottom: 2vh;
-//   border-top-right-radius: 16rpx;
-//   border-top-left-radius: 16rpx;
-//   span-align: center;
-// }
-
-// .toast-main {
-//   padding-top: 2vh;
-//   padding-bottom: 2vh;
-//   background-color: white;
-//   span-align: center;
-// }
-
-// .toast-input {
-//   margin-left: 5%;
-//   margin-right: 5%;
-//   border: 1px solid #ddd;
-//   padding-left: 2vh;
-//   padding-right: 2vh;
-//   padding-top: 1vh;
-//   padding-bottom: 1vh;
-// }
-
-// .toast-input > spanarea {
-//   width: 100%;
-//   span-align: left;
-// }
-
-// .toast-button {
-//   display: flex;
-//   border-top: 2rpx solid #f0f0f0;
-// }
-
-// .button1 {
-//   width: 50%;
-//   line-height: 80rpx;
-//   border-right: 2rpx solid #f0f0f0;
-// }
-
-// .button2 {
-//   width: 50%;
-//   line-height: 80rpx;
-// }
-
-// .button1 view {
-//   width: 100%;
-//   background-color: white;
-//   color: #ff8853;
-//   border-right: none;
-//   border-radius: 0;
-//   span-align: center;
-// }
-
-// .button2 view {
-//   width: 100%;
-//   background-color: white;
-//   color: black;
-//   border-left: none;
-//   border-radius: 0;
-//   span-align: center;
-// }
-
-// .picker {
-//   padding-top: 1vh;
-//   padding-bottom: 1vh;
-// }
-
-// .evalu {
-//   width: 400rpx;
-//   margin: 0.3rem auto;
-//   span-align: center;
-//   line-height: 48rpx;
-//   font-size: 28rpx;
-// }
-
-// .last-state {
-//   margin: 0 auto 0.3rem auto;
-//   span-align: center;
-//   line-height: 48rpx;
-//   font-size: 32rpx;
-//   color: #ff8853;
-// }
-
-// .no-data {
-//   position: absolute;
-//   top: 42%;
-//   left: 50%;
-//   transform: translate(-50%, 50%);
-// }
 </style>

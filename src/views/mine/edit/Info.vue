@@ -4,7 +4,7 @@
       <div class="upload we-img">
         <div class="title">头像</div>
         <div class="myupload" style="padding-right: 0;">
-           <van-uploader :after-read="afterRead" /> <!-- 上传图片 -->
+           <van-uploader  /> <!-- 上传图片 -->
           <van-icon name="arrow" />
           <div class="avatar"><img src="" alt=""></div>
         </div>
@@ -25,7 +25,7 @@
     </div>
     <van-dialog id="van-dialog" />
     <div class="footer">
-      <div class="back">返回</div>
+      <div class="back" @click="backPre">返回</div>
       <div class="save">
         <img class="btn" src="https://api.jobyes.com/images/btn.png" /> 立即保存
       </div>
@@ -60,6 +60,11 @@ export default {
     },
     showCode: '', // 头像
     imagename1: ''// 公众号二维码
+    }
+  },
+  methods: {
+    backPre () {
+      this.$router.push("/mine")
     }
   }
 }
@@ -159,9 +164,13 @@ export default {
     font-size: 0.3rem;
     padding: 0.15rem 0;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .btn {
       width: 0.3rem;
       height: 0.3rem;
+      margin-right: .1rem;
     }
   }
 }
