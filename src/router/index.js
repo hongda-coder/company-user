@@ -7,8 +7,8 @@ export default new Router({
   routes: [
     {
       path: '',
-      redirect: '/home',
-      component: () => import('../views/home/Home'),
+      redirect: '/login',
+      component: () => import('../views/login/Login'),
     },
     {
       path: '/home',  // 首页
@@ -32,6 +32,14 @@ export default new Router({
     {
       path: '/company/auth',  // 公司认证
       component: () => import('../views/login/next/CompanyInfo'), 
+    },
+    {
+      path: '/company/apti',  // 资质认证
+      component: () => import('../views/login/next/Aptitude'), 
+    },
+    {
+      path: '/company/false',  // 审核不通过
+      component: () => import('../views/mine/check/CheckNo'), 
     },
     {
       path: '/execute/details',  // 面试执行

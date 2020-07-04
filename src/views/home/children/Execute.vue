@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="body">
-      <!-- <no-data class='no-data' wx:if="{{dataList.length == 0}}" /> -->
       <div>
         <div class="wrap" @click="toDetails">
           <div class="job">

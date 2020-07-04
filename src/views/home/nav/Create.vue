@@ -83,43 +83,36 @@
     <van-popup v-model="addressShow"  position="bottom" :style="{ height: '35%' }">
       <Address  @confirmCity="confirmCity"  />
     </van-popup>
-
     <!-- 工作性质 -->
-    <van-action-sheet 
-      title="工作性质" 
-      v-model="showWorkData"
-      @select="selectWork" 
-      :actions="workData" 
-      cancel-text="取消" 
-      close-on-click-action 
-      @cancel="showWorkData=false"/>
+    <CommonSelect v-show="showWorkData"
+              :showWorkData="showWorkData"
+              :workData="workData" 
+              :workTitle="workTitle"
+              @select="select"
+              @cancelpopuver="showWorkData=false" />
 
     <!-- 工作年限 -->
-    <van-action-sheet 
-      title="工作年限" 
-      v-model="showYear"
-      @select="selectYear" 
-      :actions="workeData" 
-      cancel-text="取消" 
-      close-on-click-action 
-      @cancel="showYear=false"/>
+    <CommonSelect v-show="showYear"
+          :workYear="workYear" 
+          :showYear="showYear"
+          :workYearTitle="workYearTitle"
+          @select="select"
+          @cancelpopuver="showYear=false" />
 
-          <!-- 学历 -->
-    <van-action-sheet 
-      title="学历要求" 
-      v-model="showRecord"
-      @select="selectRecord" 
-      :actions="recordData" 
-      cancel-text="取消" 
-      close-on-click-action 
-      @cancel="showRecord=false"/>
+    <!-- 学历要求 -->
+      <CommonSelect v-show="showRecord" 
+        :showRecord="showRecord"
+        :recordData="recordData" 
+        :recordTitle="recordTitle"
+        @select="select"
+        @cancelpopuver="showRecord=false" />
   </div>
 </template>
 
 <script>
 import Address from  '../../../components/common/Address'
-
-import { workLists, workeData, educationData } from './createData'
+import CommonSelect from '@/components/common/CommonSelect'
+import { workLists, workYear, educationData } from '@/utils/utils'
 
 export default {
   name: 'Create',
@@ -138,18 +131,22 @@ export default {
       showWorkData: false,   //工作性质
       natureName: '',    //工作性质
       naturework: '',   //工作性质
+      workTitle: '工作性质',// 工作性质
       showYear: false, // 工作年限
-      workeData: workeData(), // 工作年限
+      workYear: workYear(), // 工作年限
       working: '',    //工作年限
       workNum: '',   //工作年限
+      workYearTitle: '工作年限',// 工作性质
       showRecord: false, // 学历要求
       recordData: educationData(), // 学历要求
       record: '',    //学历要求
       recordName: '',   //学历要求
+      recordTitle: '学历要求'
     }
   },
   components: {
-    Address
+    Address,
+    CommonSelect
   },
   mounted() {
     if(this.$route.query.id !== undefined) {
@@ -176,20 +173,29 @@ export default {
     selectPlace () {
       this.$router.push("/place/category")
     },
-    // 选择工作性质
-    selectWork (workData) {
-      this.naturework = workData.naturework
-      this.natureName = workData.name
-    },
-    //  选择工作年限
-    selectYear (workeData) {
-      this.working = workeData.working
-      this.workNum = workeData.name
-    },
     //  选择学历要求
     selectRecord (recordData) {
       this.record = recordData.record
       this.recordName = recordData.name
+    },
+    
+    select (data) {
+      // console.log(isShow)
+      if (this.showWorkData && !this.showYear && !this.showRecord) {
+        this.naturework = data.value
+        this.natureName = data.name
+        this.showWorkData = false
+      }
+      if (this.showYear && !this.showWorkData && !this.showRecord) {
+        this.working = data.value
+        this.workNum = data.name
+        this.showYear = false
+      }
+      if (this.showRecord && !this.showWorkData && !this.showYear) {
+        this.record = data.value
+        this.recordName = data.name
+        this.showRecord = false
+      }
     }
   }
 }
@@ -212,6 +218,7 @@ export default {
   line-height: 0.48rem;
   min-height: 3rem;
 }
+
 .salary {
   font-size: 0.28rem;
   color: #333;
@@ -260,11 +267,4 @@ export default {
     }
   }
 }
-//   工作性质
-// .work-item {
-//   line-height: .8rem;
-//   text-align: center;
-//   border-bottom: .02rem solid #f2f2f2;
-//   font-size: .28rem;
-// }
 </style>

@@ -2,31 +2,16 @@
   <div>
     <div>
       <van-cell-group>
-        <van-field
-          label="姓名"
-          required
-          clearable
-          input-align="right"
-          placeholder="请输入姓名"
-        />
-        <van-field
-          label="联系电话"
-          required
-          clearable
-          input-align="right"
-          placeholder="请输入联系电话"
-        />
-        <van-field
-          label="邮箱"
-          placeholder="请输入邮箱"
-          clearable
-          input-align="right"
-        />
-        <van-cell required is-link >
+        <van-field label="姓名" required clearable input-align="right" placeholder="请输入姓名" />
+        <van-field label="联系电话" required clearable input-align="right" placeholder="请输入联系电话" />
+        <van-field label="邮箱" placeholder="请输入邮箱" clearable input-align="right" />
+        <van-cell required is-link>
           <div class="time-dot">
-             <div class="start" @click="showStart=true">{{btime}}</div> <!-- 开始时间 -->
+            <div class="start" @click="showStart=true">{{btime}}</div>
+            <!-- 开始时间 -->
             <div class="interval">至</div>
-            <div class="start" @click="showEnd=true">{{etime}}</div> <!-- 结束时间 -->
+            <div class="start" @click="showEnd=true">{{etime}}</div>
+            <!-- 结束时间 -->
           </div>
           <div slot="title">
             <div class="van-cell-text">面试时段</div>
@@ -36,15 +21,22 @@
     </div>
     <div class="footer">
       <div class="back" @click="back">返回</div>
-      <div class="save"><image class="btn" src="https://api.jobyes.com/images/issue.png"></image>确定录入</div>
+      <div class="save">
+        <img class="btn" src="https://api.jobyes.com/images/issue.png" />确定录入
+      </div>
     </div>
     <!-- 面试开始时间 -->
-    <van-popup   v-model="showStart"  position="bottom">
-      <van-picker :columns="beginTime"  show-toolbar @confirm="selectStart" @cancel="showStart = false" />
+    <van-popup v-model="showStart" position="bottom">
+      <van-picker
+        :columns="beginTime"
+        show-toolbar
+        @confirm="selectStart"
+        @cancel="showStart = false"
+      />
     </van-popup>
 
     <!-- 面试结束时间 -->
-    <van-popup  v-model="showEnd"  position="bottom" >
+    <van-popup v-model="showEnd" position="bottom">
       <van-picker :columns="endTime" show-toolbar @confirm="selectEnd" @cancel="showEnd = false" />
     </van-popup>
   </div>
@@ -52,40 +44,39 @@
 
 <script>
 export default {
-  name: 'CopyName',
-  data () {
+  name: "CopyName",
+  data() {
     return {
       showStart: false, // 面试开始时间显示隐藏
       showEnd: false, // 面试结束时间显示隐藏
-      beginTime: [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23], // 面试开始时间
+      beginTime: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], // 面试开始时间
       endTime: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], // 面试结束时间
-      btime: '', // 面试开始时间
-      etime: '', // 面试结束时间
-    }
+      btime: "", // 面试开始时间
+      etime: "" // 面试结束时间
+    };
   },
   methods: {
     // 确定开始时间
-    selectStart (val) {
-      this.btime = val
-      let endTime = new Array
-      for(let i = val + 1; i < 24; i++ ) {
-        endTime.push(i)
+    selectStart(val) {
+      this.btime = val;
+      let endTime = new Array();
+      for (let i = val + 1; i < 24; i++) {
+        endTime.push(i);
       }
-      this.endTime = endTime
-      this.showStart = false
+      this.endTime = endTime;
+      this.showStart = false;
     },
     // 确定结束时间
-    selectEnd (val) {
-      this.etime = val
-      this.showEnd = false
+    selectEnd(val) {
+      this.etime = val;
+      this.showEnd = false;
     },
-    back () {
-      this.$router.push("/home")
+    back() {
+      this.$router.push("/home");
     }
   }
-}
+};
 </script>
-
 
 <style lang="scss" scoped>
 .footer {
@@ -130,19 +121,17 @@ export default {
       margin-right: 0.1rem;
     }
   }
-}        
-
+}
 .time-dot {
   display: flex;
   justify-content: flex-end;
   .start {
     width: 1rem;
-    border: .02rem solid #ccc;
+    border: 0.02rem solid #ccc;
     text-align: center;
   }
   .interval {
-    margin: 0 .15rem;
+    margin: 0 0.15rem;
   }
 }
-
-</style>
+</style> */

@@ -1,12 +1,11 @@
 import axios from 'axios'
 import qs from 'qs'
-// import { Message } from 'element-ui'
 import { getToken } from './cookie'
 
 const ajax = axios.create({
   baseURL:'http://192.168.0.182:8003/api/',
   timeout: 5000,
-  withCredentials: true,  // 允许携带cookie 'http://api.jobyes.com/api/  http://192.168.0.182:8003/api/'
+  withCredentials: true,  // 允许携带cookie 
 })
 //  添加请求拦截器
 ajax.interceptors.request.use(
@@ -33,7 +32,6 @@ ajax.interceptors.response.use(
   },
   error => {
     console.log('err' + error) 
-
     return Promise.reject(error)
   }
 )

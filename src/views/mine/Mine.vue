@@ -25,9 +25,9 @@
       <div class="mine-banner">
         <img src="https://api.jobyes.com/images/mine-banner.png" />
       </div>
-      <div class="mine-list" @click="toCode">
-        <van-cell title="资质认证" is-link value-class="pass" />
-        <van-cell is-link value-class="pass">
+      <div class="mine-list">
+        <van-cell title="资质认证" is-link value-class="pass" @click="toApti" />
+        <van-cell is-link value-class="pass"  @click="toCode">
           <div class="my-code-img">
             <img src />
           </div>
@@ -66,8 +66,13 @@ export default {
     toWeal () {
       this.$router.push("/company/weal")
     },
+    // 去上传微信公众好
     toCode () {
       this.$router.push("/mine/code")
+    },
+    // 资质认证
+    toApti () {
+      this.$router.push("/company/false")
     }
   }
 }

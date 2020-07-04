@@ -5,7 +5,7 @@
       <div>专注企业人才快招管理</div>
     </div>
 
-    <div class="title">注册/登录</div>
+    <div class="title" >注册/登录</div>
 
     <div class="login">
       <div class="phone">
@@ -22,8 +22,7 @@
         </div>
       </div>
     </div>
-
-    <div class="save">注册/登录</div>
+    <div class="save" @click="login">注册/登录</div>
   </div>
 </template>
 
@@ -60,6 +59,9 @@ export default {
       //   }
       // })
     },
+    login() {
+      this.$router.push("/company/auth")
+    }
   }
 }
 </script>
@@ -139,6 +141,7 @@ export default {
       background: #ff8853;
       border-radius: 0.1rem;
       button {
+        display: block;
         width: 100%;
         height: 0.8rem;
         line-height: 0.8rem;
