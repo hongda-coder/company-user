@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-sticky>
+    <van-sticky :offset-top="0">
       <div class="banner">
         <img src="https://api.jobyes.com/images/manage-banner.png" />
       </div>
@@ -17,21 +17,20 @@
       swipeable
       color="#fff"
       title-active-color="#F9A985"
-      offset-top="102"
-      bind:click="toggleTab"
+      offset-top="182"
+      @change="toggleTab"
       sticky
     >
       <van-tab data-id="8" title="使用中">
-        <Lists />
+        <Lists :dataLists="dataLists" />
       </van-tab>
       <van-tab title="待审核">
-        <Lists />
+        <Lists :dataLists="dataLists" />
       </van-tab>
       <van-tab title="审核不通过">
-        <Lists />
+        <Lists :dataLists="dataLists" />
       </van-tab>
     </van-tabs>
-
     <!-- 简章 -->
     <van-overlay :show="showImg" z-index="999" />
     <div class="wrap" v-show="showImg">
@@ -40,7 +39,6 @@
       </div>
       <div class="next">下一张</div>
     </div>
-
     <!-- 长按保存 -->
     <van-action-sheet
       show="showSave"
@@ -54,18 +52,45 @@
 
 <script>
 import Lists from './children/Lists'
+import { jobList } from '@/api/serve'
+import { getToken, getTel } from '@/utils'
 export default {
   name: "Manage",
   data() {
     return {
       showImg: false,
       actions: "",
-      active: 0
+      active: 0,
+      form: {
+        token: '',
+        tel: '',
+        type: 3,
+        curr: 10, // 当前页数据
+        limit: 1 // 当前页
+      },
+      dataLists:[], // 数据
     };
 	},
 	components: {
 		Lists
-	}
+  },
+  mounted () {
+    this.form.token = getToken('login-token')
+    this.form.tel = getTel('login-phone')
+    this.getJobLists()
+  },
+  methods: {
+    getJobLists () {
+      jobList(this.form).then( res => {
+        this.dataLists = res.data.data.lists
+      })
+    },
+    // 切换
+    toggleTab(name) {
+      this.form.type = name + 1
+      this.getJobLists()
+    }
+  }
 };
 </script>
 

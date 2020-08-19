@@ -1,25 +1,24 @@
 <template>
   <div class="plan">
     <div class="body">
-      <!-- <no-data class='no-data' wx:if="{{dataList.length == 0}}" /> -->
       <div>
         <div>
-          <div class="job" @click="toDetails">
+          <div v-for="item in dataLists.list" :key="item.id" class="job" @click="toDetails">
             <div class="job-state">
-              <div class="job-name">人事行政主管</div>
-              <div class="state-step">3-4.5千/月</div>
+              <div class="job-name">{{item.jobname}}</div>
+              <div class="state-step">{{item.salary}}</div>
             </div>
             <div class="job-state">
               <div class="interdiv-count">
                 预约时间：
-                <span class="job-color">2020-06-18</span>
+                <span class="job-color">{{item.mstime}}</span>
               </div>
-              <van-button color="#FF8853" size="small" style="height: .42rem; padding: 0 .3rem;" round @click.stop="toCopyName">录入名单</van-button>
+              <van-button color="#FF8853" size="small" style="height: .42rem; padding: 0 .3rem;" round @click.stop="toCopyName(item.id)">录入名单</van-button>
             </div>
             <div class="interdiv-count">
-              广州市天河区
-              <span>|</span>1-3年
-              <span>|</span>大专
+              {{item.address}}
+              <span>|</span>{{item.working}}
+              <span>|</span>{{item.record}}
             </div>
           </div>
         </div>
@@ -31,6 +30,9 @@
 <script>
 export default {
   name: 'Plan',
+  props: {
+    dataLists: Object
+  },
   methods: {
     toDetails () { // 去计划详情
       this.$router.push("/plan/details")

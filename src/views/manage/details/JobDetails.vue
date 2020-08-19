@@ -61,8 +61,25 @@
 </template>
 
 <script>
+import { getToken, getTel } from '@/utils'
+import { jobDetail } from '@/api/serve'
 export default {
   name: 'JobDetails',
+  data () {
+    return {
+      Form: {
+        tel: '',
+        token: '',
+        jobid: ''
+      },
+    }
+  },
+  mounted() {
+    this.Form.jobid = this.$route.query.id
+    this.Form.token = getToken('login-token')
+    this.Form.tel = getTel('login-phone')
+    this.getData()
+  },
   methods: {
     // 去修改
     toCreate () { 
@@ -72,6 +89,11 @@ export default {
     // 返回上一步
     back() { 
       this.$router.go(-1)
+    },
+    getData () {
+      jobDetail (this.Form).then(res =>{
+        console.log(res)
+      })
     }
   }
 }

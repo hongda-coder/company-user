@@ -18,5 +18,14 @@ module.exports = {
     port: 9020,
     https: false,
     hotOnly: false,
+    proxy: {
+      "/api": {
+        target: 'http://192.168.0.59:8065/api/HrApiWeb',
+        changeOrigin: true, 
+        pathRewrite: {
+          "^/api": '',
+        }
+      }
+    }
   }
 }

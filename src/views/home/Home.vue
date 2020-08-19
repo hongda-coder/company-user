@@ -14,17 +14,16 @@
       <van-tabs
         style="width: 3rem"
         swipeable
-        :active="active"
         sticky
-        bind:change="changeFirst"
+        @click="changeFirst"
         color="#FF8853"
         :border="false"
       >
         <van-tab title="面试计划">
-          <Plan />
+          <Plan :dataLists="dataLists" />
         </van-tab>
         <van-tab title="面试执行">
-          <Execute />
+          <Execute :dataLists="dataLists" />
         </van-tab>
       </van-tabs>
     </div>
@@ -33,6 +32,8 @@
 <script>
 import Plan from "./children/Plan";
 import Execute from "./children/Execute";
+import { inviteList } from '@/api/serve';
+import { getToken, getTel } from '@/utils'
 export default {
   name: "Home",
   components: {
@@ -41,8 +42,23 @@ export default {
   },
   data() {
     return {
-      active: 0
+      Form: {
+        token: '',
+        tel: '',
+        state: 1,
+        curr: 10,
+        limit: 1
+      },
+      dataLists: {} // 面试执行
     };
+  },
+  mounted () {
+    this.Form.token = getToken('login-token')
+    this.Form.tel = getTel('login-phone')
+    this.getData()
+  },
+  computed: {
+
   },
   methods: {
     // 去发布计划
@@ -56,6 +72,15 @@ export default {
     // 去人才库
     toTalents () {
       this.$router.push("/talents")
+    },
+    getData () {
+      inviteList(this.Form).then( res => {
+        this.dataLists = res.data.data
+      })
+    },
+    changeFirst (index) {
+      this.Form.state = index + 1
+      this.getData()
     }
   }
 };

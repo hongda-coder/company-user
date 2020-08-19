@@ -1,25 +1,10 @@
 import axios from 'axios'
-import qs from 'qs'
-import { getToken } from './cookie'
 
-const ajax = axios.create({
-  baseURL:'http://192.168.0.182:8003/api/',
-  timeout: 5000,
-  withCredentials: true,  // 允许携带cookie 
+const ajax = axios.create({ //  http://192.168.0.59:8065/api/HrApiWeb   // https://api.jobyes.com/api/HrApiWeb
+  baseURL:'/api',   
+  timeout: 15000,  
+  withCredentials: true
 })
-//  添加请求拦截器
-ajax.interceptors.request.use(
-  config => {
-    if (getToken())
-    config.headers['token'] = getToken()
-    config.data = qs.stringify(config.data)
-    return config
-  },
-  error => {
-    console.log(error) 
-    return Promise.reject(error)
-  }
-)
 
 ajax.interceptors.response.use(
   response => {
@@ -36,3 +21,16 @@ ajax.interceptors.response.use(
   }
 )
 export default ajax  
+
+
+
+s
+
+
+
+
+
+
+
+
+

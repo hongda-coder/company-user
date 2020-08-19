@@ -99,9 +99,7 @@ export function educationData() {
       name: '博士及以上'
     }
   ]
-}
-
-
+} 
 export function addressList() {
   return [
         {

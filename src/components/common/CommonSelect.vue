@@ -16,16 +16,16 @@ export default {
   name: "CompanyRoute",
   data() {
     return {
-      help: ''
+      help: ""
     };
   },
   props: {
     natureList: Array, // 企业性质
     routeTitle: String, //企业性质
-    routeShow: Boolean,//企业性质
+    routeShow: Boolean, //企业性质
     companySize: Array, // 公式规模
     sizeTitle: String, // 公式规模
-    sizeShow: Boolean,  // 公式规模
+    sizeShow: Boolean, // 公式规模
     workData: Array, // 工作性质
     workTitle: String, // 工作性质
     showWorkData: Boolean, // 工作性质
@@ -57,12 +57,18 @@ export default {
     },
     isShow: {
       get() {
-        return this.showWorkData || this.showYear || this.showRecord || this.routeShow || this.sizeShow
+        return (
+          this.showWorkData ||
+          this.showYear ||
+          this.showRecord ||
+          this.routeShow ||
+          this.sizeShow
+        );
       },
       set() {
-        this.help=''
+        this.help = "";
       }
-    },
+    }
   },
   methods: {
     select(data) {

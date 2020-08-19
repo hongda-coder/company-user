@@ -2,19 +2,19 @@
   <div>
     <div class="body">
       <div>
-        <div class="list-item" @click="goDetails">
+        <div v-for="item of jobLists" :key='item.jobid' class="list-item" @click="goDetails(item.jobid)">
           <div class="job-info">
             <div class="job-item">
-              <div class="job-name">前端开发</div>
-              <div class="job-price">0.8-1万/每月</div>
+              <div class="job-name">{{item.jobename}}</div>
+              <div class="job-price">{{item.jobpays}}</div>
             </div>
             <div class="job-item">
               <div class="job-req">
-                <span>广东省广州市</span>
+                <span>{{item.address}}</span>
                 <span>|</span>
-                <span>1-3年</span>
+                <span>{{item.working}}</span>
                 <span>|</span>
-                <span>本科</span>
+                <span>{{item.record}}</span>
               </div>
             </div>
           </div>
@@ -26,9 +26,22 @@
 <script>
 export default {
   name: 'List',
+  props: {
+    dataLists: Array
+  },
+  computed: {
+    jobLists () {
+      return this.dataLists
+    }
+  },
   methods: {
-    goDetails () {
-      this.$router.push("/job/details")
+    goDetails (id) {
+      this.$router.push({
+        path:"/job/details",
+        query: {
+          id: id
+        }
+      })
     }
   }
 }
@@ -39,6 +52,9 @@ export default {
   display: flex;
   border-bottom: 0.1rem solid #fff9f6;
   padding: 0 0.3rem;
+  &:last-of-type {
+    margin-bottom: 1.2rem;
+  }
   .job-info {
     padding: 0.1rem 0;
     box-sizing: border-box;
